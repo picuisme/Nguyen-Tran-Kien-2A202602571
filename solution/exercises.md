@@ -15,13 +15,13 @@ Gọi `call_openai` với temperature 0.0, 0.5, 1.0 và 1.5 dùng prompt
 **"Hãy kể cho tôi một sự thật thú vị về Việt Nam."**
 
 **Bạn nhận thấy quy luật gì qua bốn phản hồi?** (2–3 câu)
-- Temperature 0.0, phản hồi mang tính tiền định , lập luận nhất quán và tập trung vào các sự thật phổ biến nhất.
-- Temperature tăng lên 0.5 – 1.0, nội dung bắt đầu đa dạng hóa góc nhìn, câu văn linh hoạt và tự nhiên hơn.
-- Ở mức 1.5, câu chữ trở nên kém ổn định, xuất hiện các cách diễn đạt bất thường hoặc câu từ rời rạc do phân phối xác suất token bị làm phẳng quá mức.
+> - Ở temperature 0.0, phản hồi mang tính tiền định (deterministic), lập luận nhất quán và tập trung vào các sự thật phổ biến nhất (như xuất khẩu cà phê hoặc hang Sơn Đoòng).
+> - Khi temperature tăng lên 0.5 – 1.0, nội dung bắt đầu đa dạng hóa góc nhìn, câu văn linh hoạt và tự nhiên hơn.
+> - Ở mức 1.5, câu chữ trở nên kém ổn định, xuất hiện các cách diễn đạt bất thường hoặc câu từ rời rạc do phân phối xác suất token bị làm phẳng quá mức (high entropy).
 
 ### Câu 1.2 — Chọn temperature cho sản phẩm
 **Bạn sẽ đặt temperature bao nhiêu cho chatbot hỗ trợ khách hàng, và tại sao?**
-Tôi sẽ đặt temperature thấp, khoảng từ 0.0 đến 0.3 (khuyến nghị 0.2). Chatbot chăm sóc khách hàng yêu cầu tính chính xác tuyệt đối, nhất quán về chính sách/giá cả và hạn chế tối đa hiện tượng ảo giác. Mức nhiệt độ thấp giúp model ưu tiên lựa chọn các token có xác suất cao nhất, đảm bảo thông tin đáng tin cậy và tuân thủ đúng tài liệu hỗ trợ.
+> Tôi sẽ đặt temperature thấp, khoảng từ 0.0 đến 0.3 (khuyến nghị 0.2). Chatbot chăm sóc khách hàng yêu cầu tính chính xác tuyệt đối, nhất quán về chính sách/giá cả và hạn chế tối đa hiện tượng ảo giác (hallucination). Mức nhiệt độ thấp giúp model ưu tiên lựa chọn các token có xác suất cao nhất, đảm bảo thông tin đáng tin cậy và tuân thủ đúng tài liệu hỗ trợ.
 
 ### Câu 1.3 — Đánh đổi chi phí
 Kịch bản: 10.000 người dùng hoạt động mỗi ngày, mỗi người gọi API 3 lần,
@@ -29,9 +29,9 @@ mỗi lần trung bình ~350 token đầu ra.
 
 **Ước tính GPT-4o đắt hơn GPT-4o-mini bao nhiêu lần cho workload này? Nêu một
 trường hợp GPT-4o xứng đáng với chi phí và một trường hợp nên dùng mini:**
-- Ước tính chi phí: Tổng output token mỗi ngày là 10.000 × 3 × 350 = 10.500.000 tokens (10.500 đơn vị 1K token). Chi phí output của GPT-4o là 10.500 × $0.010 = $105/ngày (~$3.150/tháng), trong khi GPT-4o-mini là 10.500 × $0.0006 = $6.3/ngày (~$189/tháng). GPT-4o đắt hơn GPT-4o-mini xấp xỉ 16.67 lần.
-- Trường hợp GPT-4o xứng đáng: Các bài toán cần suy luận logic phức tạp, giải quyết tình huống pháp lý/kỹ thuật chuyên sâu, sinh mã nguồn chính xác hoặc trích xuất dữ liệu rủi ro cao mà sai sót nhỏ gây tổn thất lớn.
-- Trường hợp nên dùng mini: Chatbot trả lời câu hỏi thường gặp (FAQ), phân loại ý định người dùng (intent classification), tóm tắt nhanh văn bản ngắn hoặc các luồng tương tác thông thường với lưu lượng truy vấn lớn.
+> - Ước tính chi phí: Tổng output token mỗi ngày là 10.000 × 3 × 350 = 10.500.000 tokens (10.500 đơn vị 1K token). Chi phí output của GPT-4o là 10.500 × $0.010 = $105/ngày (~$3.150/tháng), trong khi GPT-4o-mini là 10.500 × $0.0006 = $6.3/ngày (~$189/tháng). GPT-4o đắt hơn GPT-4o-mini xấp xỉ 16.67 lần.
+> - Trường hợp GPT-4o xứng đáng: Các bài toán cần suy luận logic phức tạp, giải quyết tình huống pháp lý/kỹ thuật chuyên sâu, sinh mã nguồn chính xác hoặc trích xuất dữ liệu rủi ro cao mà sai sót nhỏ gây tổn thất lớn.
+> - Trường hợp nên dùng mini: Chatbot trả lời câu hỏi thường gặp (FAQ), phân loại ý định người dùng (intent classification), tóm tắt nhanh văn bản ngắn hoặc các luồng tương tác thông thường với lưu lượng truy vấn lớn.
 
 ---
 
